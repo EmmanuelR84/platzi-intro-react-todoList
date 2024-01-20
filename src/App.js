@@ -4,10 +4,10 @@ import { TodoList } from './Components/TodoList/todoList';
 import { CreateTodoButton } from './Components/CreateTodoButton/createTodoButton';
 import { TodoItem } from './Components/TodoItem/todoItem';
 import React from 'react';
-import './App.css';
+import './Components/bases/variables.css';
 
 const defaultTodos = [
-  { text: 'Cortar cebollas', completed: false },
+  { text: 'Cortar cebollas', completed: true },
   { text: 'Tomar el curso de introduccion a React.js', completed: false },
   { text: 'Llorar con la Llorona', completed: false },
   { text: 'Lalalalala', completed: false },

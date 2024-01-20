@@ -2,7 +2,9 @@ import './createTodoButton.css';
 
 const CreateTodoButton = () => {
   return(
-    <button>+</button>
+    <div className='div__btn'>
+      <button>+</button>
+    </div>
   );
 }
 

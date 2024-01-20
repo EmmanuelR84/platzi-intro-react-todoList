@@ -1,0 +1,17 @@
+@import url('../bases/variables.css');
+
+.div__search {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  padding: .5em;
+  height: 3em;
+  width: 70%;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 3px 3px 15px var(--shadow);
+  outline-color: var(--primary-color);
+}

@@ -1,0 +1,14 @@
+@import url('../bases/variables.css');
+
+.div__btn button {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
