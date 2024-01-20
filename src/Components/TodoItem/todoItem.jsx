@@ -1,10 +1,10 @@
 import './todoItem.css';
 
-const TodoItem = () => {
+const TodoItem = (props) => {
   return(
     <li>
-      <spam>V</spam>
-      <p>Llorar con la Llorona</p>
+      <spam>V {props.completed} </spam>
+      <p>{props.text}</p>
       <spam>X</spam>
     </li>
   );
