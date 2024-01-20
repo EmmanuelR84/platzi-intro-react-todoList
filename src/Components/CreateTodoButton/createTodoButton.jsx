@@ -3,7 +3,13 @@ import './createTodoButton.css';
 const CreateTodoButton = () => {
   return(
     <div className='div__btn'>
-      <button>+</button>
+      <button 
+        onClick={
+          () => {console.log('Click al btn');}
+        }
+      >
+        +
+      </button>
     </div>
   );
 }
