@@ -1,11 +1,12 @@
-import { TodoIcon } from '../TodoIcon';
+import { TodoIcon } from '../TodoIcon/TodoIcon';
 import './compliteIcon.css';
 
-const CompleteIcon = () => {
+const CompleteIcon = ({completed, onComplete}) => {
   return(
     < TodoIcon
       type= 'check'
-      color= 'gray'
+      color={completed ? '#4caf50' : 'gray'}
+      onClick={onComplete}
     />
   );
 };

@@ -7,20 +7,40 @@ import React from 'react';
 import { useState } from 'react';
 import './Components/bases/variables.css';
 
-const defaultTodos = [
-  { text: 'Cortar cebollas', completed: true },
-  { text: 'Tomar el curso de introduccion a React.js', completed: false },
-  { text: 'Llorar con la Llorona', completed: false },
-  { text: 'Lalalalala', completed: false },
-  { text: 'agregando una nueva tarea', completed: true },
-]
+// const defaultTodos = [
+//   { text: 'Cortar cebollas', completed: true },
+//   { text: 'Tomar el curso de introduccion a React.js', completed: false },
+//   { text: 'Llorar con la Llorona', completed: false },
+//   { text: 'Lalalalala', completed: false },
+//   { text: 'agregando una nueva tarea', completed: true },
+// ]
+
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
+//localStorage.removeItem('TODOS_V1');
+
+//convertir string en js y guardarlos en una variable
+//const stringifiedTodos = JSON.stringify(defaultTodos)
+
+//convertirlos en un array
+//JSON.parse(stringifiedTodos)
 
 
 
 function App() {
 
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+  let parsedTodos;
+
+  //si localStorage esta vacio
+  if (!localStorageTodos) {
+    localStorage.setItem('TODOS_V1', JSON.stringify([]))
+    parsedTodos = [];
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+
 const [searchValue, setSearchValue] = useState('');
-const [todos,setTodos] =useState(defaultTodos);
+const [todos,setTodos] =useState(parsedTodos);
 
 //filtrar tareas completadas ( !! doble negacion no es necesario, pero de esta forma sabemos que estamos trabajando con booleanos)
 const completedTodo = todos.filter(todo => !!todo.completed).length;
@@ -37,6 +57,13 @@ const searchedTodos = todos.filter(
   }
 );
 
+// Funcion que actualiza el estado y al localSotorage al mismo tiempo
+const saveTodos = (newTodos) => {
+  localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
+  
+  setTodos(newTodos);
+}
+
 //completar todo
 const completeTodo = (text) => {
   const newTodos = [...todos]
@@ -44,7 +71,7 @@ const completeTodo = (text) => {
     (todo) => todo.text === text
   );
   newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
-  setTodos(newTodos);
+  saveTodos(newTodos);
 };
 //eliminar todo
 const deleteTodo = (text) => {
@@ -53,7 +80,7 @@ const deleteTodo = (text) => {
     (todo) => todo.text === text
   );
   newTodos.splice(todoIndex, 1);
-  setTodos(newTodos);
+  saveTodos(newTodos);
 };
 
   return (

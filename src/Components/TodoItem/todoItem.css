@@ -14,6 +14,7 @@
   max-height: 3em;
   border: 1px solid #cccccc;
   border-radius: 10px;
+  box-shadow: 0 5px 50px rgba(32, 35, 41, 0.15);
 }
 
 .textTask {
@@ -22,35 +23,4 @@
 
 .li__item-through {
   text-decoration:line-through;
-}
-
-.icon {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  width: 48px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.icon__check:hover {
-  cursor: pointer;
-}
-
-.icon__check-active {
-  color: #4caf50;
-  font-weight: bold;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
-.icon__delete {
-  position: absolute;
-  right: 0;
-  top: -24px;
-}
-.icon__delete:hover {
-  color: #f80606;
 }

@@ -1,11 +1,12 @@
-import { TodoIcon } from '../TodoIcon';
+import { TodoIcon } from '../TodoIcon/TodoIcon';
 import './deleteIcon.css';
 
-const DeleteIcon = () => {
+const DeleteIcon = ({onDelete}) => {
   return(
     < TodoIcon
       type='delete'
-      color='red'
+      color='gray'
+      onClick={onDelete}
     />
   );
 };
