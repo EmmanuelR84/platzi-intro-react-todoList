@@ -1,14 +1,16 @@
 import './todoSerch.css';
 
-const TodoSearch = () => {
-
-  const search = (e) => {
-    console.log(e.target.value);
-  }
+const TodoSearch = (props) => {
 
   return(
     <div className='div__search'>
-    <input placeholder='Cortar cebolla' onChange={search} />
+    <input 
+      placeholder='Cortar cebolla'
+      value={props.searchValue}
+      onChange={(e) => {
+        props.setSearchValue(e.target.value);
+      }}
+    />
     </div>
   );
 }

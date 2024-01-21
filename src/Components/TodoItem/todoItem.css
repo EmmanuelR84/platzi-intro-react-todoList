@@ -24,6 +24,10 @@
   text-decoration:line-through;
 }
 
+.tilde:hover {
+  cursor: pointer;
+}
+
 .tilde--active {
   color: #09db09;
   font-weight: bold;
