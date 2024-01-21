@@ -1,11 +1,8 @@
-import { TodoCounter } from './Components/TodoCounter/TodoCounter';
-import { TodoSearch } from './Components/TodoSearch/todoSearch';
-import { TodoList } from './Components/TodoList/todoList';
-import { CreateTodoButton } from './Components/CreateTodoButton/createTodoButton';
-import { TodoItem } from './Components/TodoItem/todoItem';
 import React from 'react';
 import { useState } from 'react';
+import { useLocalStorage } from './Components/customUses/customUses';
 import './Components/bases/variables.css';
+import { AppUI } from './App/appUI';
 
 // const defaultTodos = [
 //   { text: 'Cortar cebollas', completed: true },
@@ -24,23 +21,12 @@ import './Components/bases/variables.css';
 //convertirlos en un array
 //JSON.parse(stringifiedTodos)
 
-
-
 function App() {
 
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
-  let parsedTodos;
-
-  //si localStorage esta vacio
-  if (!localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]))
-    parsedTodos = [];
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos);
-  }
-
 const [searchValue, setSearchValue] = useState('');
-const [todos,setTodos] =useState(parsedTodos);
+
+//El item de la func seria el todos y luego va la funcion q se creo en la funcion useslocalStorage. Los parametros serian el nombre del lugar donde se guardaran(itemName) y como iniciarlo([])
+const [todos,saveTodos] =useLocalStorage('TODOS_V1', []);
 
 //filtrar tareas completadas ( !! doble negacion no es necesario, pero de esta forma sabemos que estamos trabajando con booleanos)
 const completedTodo = todos.filter(todo => !!todo.completed).length;
@@ -56,13 +42,6 @@ const searchedTodos = todos.filter(
     return todoText.includes(searchText);
   }
 );
-
-// Funcion que actualiza el estado y al localSotorage al mismo tiempo
-const saveTodos = (newTodos) => {
-  localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
-  
-  setTodos(newTodos);
-}
 
 //completar todo
 const completeTodo = (text) => {
@@ -83,30 +62,16 @@ const deleteTodo = (text) => {
   saveTodos(newTodos);
 };
 
-  return (
-    <React.Fragment>
-
-      < TodoCounter completed={completedTodo} total={totalTodo} />
-      < TodoSearch 
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-
-      < TodoList >
-        { searchedTodos.map(todo => (
-          <TodoItem 
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={ () => completeTodo(todo.text)}
-            onDelete={ () => deleteTodo(todo.text)}
-          />
-        )) }
-      </ TodoList >
-
-      < CreateTodoButton />
-
-    </React.Fragment>
+  return(
+    < AppUI
+      completedTodo={completedTodo}
+      totalTodo={totalTodo}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />
   );
 }
 
