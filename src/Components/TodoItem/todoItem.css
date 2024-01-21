@@ -24,24 +24,33 @@
   text-decoration:line-through;
 }
 
-.tilde:hover {
+.icon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.icon__check:hover {
   cursor: pointer;
 }
 
-.tilde--active {
-  color: #09db09;
+.icon__check-active {
+  color: #4caf50;
   font-weight: bold;
   font-size: 1.5em;
   cursor: pointer;
 }
 
-.close {
+.icon__delete {
   position: absolute;
-  right: -4px;
-  top: -10px;
-  font-weight: bold;
-  cursor: pointer;
+  right: 0;
+  top: -24px;
 }
-.close:hover {
+.icon__delete:hover {
   color: #f80606;
 }
